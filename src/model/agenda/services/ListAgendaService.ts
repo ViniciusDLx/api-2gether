@@ -26,7 +26,7 @@ export default class ListAgendaService {
         }
 
         if (params.day) {
-            builder.andWhere({ moment: params.day });
+            builder.andWhere({ momento: params.day });
         }
 
         const [data, total] = (await builder.getManyAndCount()) as any;
