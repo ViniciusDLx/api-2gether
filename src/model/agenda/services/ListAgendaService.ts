@@ -10,19 +10,23 @@ export default class ListAgendaService {
         private agendaRepository: Repository<Agenda>
     ) {}
 
-    public async execute(params: { id: number }): Promise<any> {
+    public async execute(params: { id?: number; day?: string }): Promise<any> {
         const users = await this.buildQuery(params);
 
         return users;
     }
 
-    private async buildQuery(params: { id: number }) {
+    private async buildQuery(params: { id?: number; day?: string }) {
         const builder = this.agendaRepository
             .createQueryBuilder('agenda')
             .leftJoinAndSelect('agenda.agendaItems', 'agendaItems');
 
         if (params.id) {
-            builder.where({ id: params.id });
+            builder.andWhere({ id: params.id });
+        }
+
+        if (params.day) {
+            builder.andWhere({ moment: params.day });
         }
 
         const [data, total] = (await builder.getManyAndCount()) as any;

@@ -16,7 +16,7 @@ export class AppController {
     }
 
     @Get('/listAgenda')
-    public async listAgenda(@Query() params: { id: number }) {
+    public async listAgenda(@Query() params: { id?: number; day?: string }) {
         try {
             console.log('params -> ', params);
             const data = await this.listAgendaService.execute(params);
