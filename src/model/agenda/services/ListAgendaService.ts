@@ -19,8 +19,11 @@ export default class ListAgendaService {
     private async buildQuery(params: { id: number }) {
         const builder = this.agendaRepository
             .createQueryBuilder('agenda')
-            .leftJoinAndSelect('agenda.agendaItems', 'agendaItems')
-            .where({ id: params.id });
+            .leftJoinAndSelect('agenda.agendaItems', 'agendaItems');
+
+        if (params.id) {
+            builder.where({ id: params.id });
+        }
 
         const [data, total] = (await builder.getManyAndCount()) as any;
 
