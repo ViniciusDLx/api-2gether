@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Param } from '@nestjs/common';
+import { Controller, Get, Inject, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import ListAgendaService from './model/agenda/services/ListAgendaService';
 
@@ -15,8 +15,8 @@ export class AppController {
         return this.appService.getHello();
     }
 
-    @Get('listAgenda/:id(\\d+)')
-    public async listAgenda(@Param() params: { id: number }) {
+    @Get('/listAgenda')
+    public async listAgenda(@Query() params: { id: number }) {
         try {
             console.log('params -> ', params);
             const data = await this.listAgendaService.execute(params);
