@@ -13,10 +13,10 @@ export class AgendaItems {
     id: string;
 
     @Column({ name: 'name', type: 'varchar' })
-    momento: string;
+    name: string;
 
     @ManyToOne(() => Agenda, (agenda) => agenda.agendaItems)
-    @JoinColumn({ name: 'invoice_id' })
+    @JoinColumn({ name: 'agenda_id' })
     public agenda: Agenda;
 }
 Agenda;

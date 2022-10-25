@@ -9,6 +9,6 @@ export class Agenda {
     @Column({ name: 'momento', type: 'varchar' })
     momento: string;
 
-    @OneToMany(() => AgendaItems, (invoiceItem) => invoiceItem.agenda)
+    @OneToMany(() => AgendaItems, (agendaItems) => agendaItems.agenda)
     public agendaItems: AgendaItems[];
 }
