@@ -27,8 +27,6 @@ export default class SaveAgendaService {
 
         const agenda = await builder.getOne();
 
-        agenda.agendaItems = new Array<AgendaItems>();
-
         agenda.agendaItems[0].name = params.name;
 
         return await this.agendaRepository.save(agenda);
