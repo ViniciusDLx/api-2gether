@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Query } from '@nestjs/common';
+import { Controller, Get, Inject, Query, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
 import ListAgendaService from './model/agenda/services/ListAgendaService';
 import SaveAgendaService from './model/agenda/services/SaveAgendaService';
@@ -31,9 +31,9 @@ export class AppController {
         }
     }
 
-    @Get('/saveAgenda')
+    @Post('/saveAgenda')
     public async saveAgenda(
-        @Query() params: { momento?: string; name: string }
+        @Body() params: { momento?: string; name: string }
     ) {
         try {
             console.log('params -> ', params);
