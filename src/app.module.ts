@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { configService } from './config/config.service';
 import { Agenda } from './model/agenda/entities/Agenda.entity';
 import ListAgendaService from './model/agenda/services/ListAgendaService';
+import SaveAgendaService from './model/agenda/services/SaveAgendaService';
 import { AgendaItems } from './model/agendaItems/entities/AgendaItems.entity';
 
 @Module({
@@ -13,6 +14,6 @@ import { AgendaItems } from './model/agendaItems/entities/AgendaItems.entity';
         TypeOrmModule.forFeature([Agenda, AgendaItems])
     ],
     controllers: [AppController],
-    providers: [AppService, ListAgendaService]
+    providers: [AppService, ListAgendaService, SaveAgendaService]
 })
 export class AppModule {}
