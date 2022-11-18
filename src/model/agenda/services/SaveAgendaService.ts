@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AgendaItems } from 'src/model/agendaItems/entities/AgendaItems.entity';
 import { Repository } from 'typeorm';
 import { Agenda } from '../entities/Agenda.entity';
 
@@ -19,19 +20,17 @@ export default class SaveAgendaService {
         return users;
     }
 
-    // TODO SALVAR NOVA DATA
     private async buildQuery(params: { momento?: string; name: string }) {
-        console.log('params -> ', params);
-        // const builder = this.agendaRepository
-        //     .createQueryBuilder('agenda')
-        //     .leftJoinAndSelect('agenda.agendaItems', 'agendaItems');
-        // if (params.id) {
-        //     builder.andWhere({ id: params.id });
-        // }
-        // if (params.day) {
-        //     builder.andWhere({ momento: params.day });
-        // }
-        // const [data, total] = (await builder.getManyAndCount()) as any;
-        // return { data, meta: { total } };
+        const builder = this.agendaRepository
+            .createQueryBuilder('agenda')
+            .where({ momento: params.momento });
+
+        const agenda = await builder.getOne();
+
+        agenda.agendaItems = new Array<AgendaItems>();
+
+        agenda.agendaItems[0].name = params.name;
+
+        return await this.agendaRepository.save(agenda);
     }
 }
