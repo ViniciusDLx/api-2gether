@@ -32,11 +32,9 @@ export class AppController {
     }
 
     @Post('/saveAgenda')
-    public async saveAgenda(
-        @Body() params: { momento?: string; name: string }
-    ) {
+    public async saveAgenda(@Body() params: { momento: string; name: string }) {
         try {
-            console.log('params -> ', params);
+            console.log('params save -> ', params);
             const data = await this.saveAgendaService.execute(params);
 
             return data;
