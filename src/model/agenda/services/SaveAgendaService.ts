@@ -25,6 +25,8 @@ export default class SaveAgendaService {
             .createQueryBuilder('agenda')
             .where({ momento: params.momento });
 
+        console.log('builder.getQuery() -> ', await builder.getQuery());
+
         const agenda = await builder.getOne();
 
         console.log('itens -> ', agenda.agendaItems);
