@@ -21,15 +21,15 @@ export default class SaveAgendaService {
     }
 
     private async buildQuery(params: { momento?: string; name: string }) {
-        const builder = this.agendaRepository
-            .createQueryBuilder('agenda')
-            .where({ momento: params.momento });
+        const newAgenda = new Agenda();
 
-        console.log('builder.getQuery() -> ', await builder.getQuery());
+        newAgenda.momento = params.momento;
 
-        const agenda = await builder.getOne();
+        const agenda = await this.agendaRepository.save(newAgenda);
 
-        console.log('itens -> ', agenda.agendaItems);
+        console.log('agenda.agendaItems -> ', agenda.agendaItems);
+
+        agenda.agendaItems = [];
 
         agenda.agendaItems[0].name = params.name;
 
