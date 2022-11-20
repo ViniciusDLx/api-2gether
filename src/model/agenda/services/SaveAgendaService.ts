@@ -17,9 +17,10 @@ export default class SaveAgendaService {
     }
 
     private async buildQuery(params: { momento?: string }) {
-        const newAgenda = await this.agendaRepository.findOne({
-            where: { momento: params.momento }
-        });
+        const newAgenda =
+            (await this.agendaRepository.findOne({
+                where: { momento: params.momento }
+            })) || new Agenda();
 
         newAgenda.momento = params.momento;
 
