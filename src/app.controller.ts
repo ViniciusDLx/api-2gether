@@ -1,6 +1,7 @@
 import { Controller, Get, Inject, Query, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
 import ListAgendaService from './model/agenda/services/ListAgendaService';
+import SaveAgendaItemsService from './model/agenda/services/SaveAgendaItemsService';
 import SaveAgendaService from './model/agenda/services/SaveAgendaService';
 
 @Controller()
@@ -10,7 +11,9 @@ export class AppController {
         @Inject(ListAgendaService)
         private listAgendaService: ListAgendaService,
         @Inject(SaveAgendaService)
-        private saveAgendaService: SaveAgendaService
+        private saveAgendaService: SaveAgendaService,
+        @Inject(SaveAgendaItemsService)
+        private saveAgendaItemsService: SaveAgendaItemsService
     ) {}
 
     @Get()
@@ -32,26 +35,28 @@ export class AppController {
     }
 
     @Post('/saveAgenda')
-    public async saveAgenda(@Body() params: { momento: string; name: string }) {
+    public async saveAgenda(@Body() params: { momento: string }) {
         try {
-            console.log('params save -> ', params);
-            const data = await this.saveAgendaService.execute(params);
+            const newAgenda = await this.saveAgendaService.execute(params);
 
-            return data;
+            return newAgenda;
         } catch (error) {
             console.log('error -> ', error);
             console.error(error);
         }
     }
 
-    // @Get('listShopList/:id(\\d+)')
-    // public async listShopList(@Param() params: { id: number }) {
-    //     try {
-    //         const data = await this.listUsersService.execute(params);
+    @Post('/saveAgendaItems')
+    public async saveAgendaItems(
+        @Body() params: { moment: string; name: string }
+    ) {
+        try {
+            const newAgenda = await this.saveAgendaItemsService.execute(params);
 
-    //         return data;
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
+            return newAgenda;
+        } catch (error) {
+            console.log('error -> ', error);
+            console.error(error);
+        }
+    }
 }
