@@ -14,7 +14,7 @@ export default class SaveAgendaItemsService {
     ) {}
 
     public async execute(params: {
-        momento: string;
+        agendaId: string;
         name: string;
     }): Promise<any> {
         const newAgenda = await this.buildQuery(params);
@@ -22,9 +22,9 @@ export default class SaveAgendaItemsService {
         return newAgenda;
     }
 
-    private async buildQuery(params: { momento: string; name: string }) {
+    private async buildQuery(params: { agendaId: string; name: string }) {
         const agenda = await this.agendaRepository.findOne({
-            where: { momento: params.momento }
+            where: { id: params.agendaId }
         });
 
         const itemAgenda = new AgendaItems();
