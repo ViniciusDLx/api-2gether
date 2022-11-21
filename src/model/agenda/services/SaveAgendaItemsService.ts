@@ -16,18 +16,27 @@ export default class SaveAgendaItemsService {
     public async execute(params: {
         agendaId: string;
         name: string;
+        id: string;
     }): Promise<any> {
         const newAgenda = await this.buildQuery(params);
 
         return newAgenda;
     }
 
-    private async buildQuery(params: { agendaId: string; name: string }) {
+    private async buildQuery(params: {
+        agendaId: string;
+        name: string;
+        id: string;
+    }) {
         const agenda = await this.agendaRepository.findOne({
             where: { id: params.agendaId }
         });
 
         const itemAgenda = new AgendaItems();
+
+        if (params.id) {
+            itemAgenda.id = params.id;
+        }
 
         itemAgenda.agenda = agenda;
         itemAgenda.name = params.name;
