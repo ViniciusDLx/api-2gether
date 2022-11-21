@@ -1,5 +1,6 @@
 import { Controller, Get, Inject, Query, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
+import ListAgendaItemsService from './model/agenda/services/ListAgendaItemsService';
 import ListAgendaService from './model/agenda/services/ListAgendaService';
 import SaveAgendaItemsService from './model/agenda/services/SaveAgendaItemsService';
 import SaveAgendaService from './model/agenda/services/SaveAgendaService';
@@ -13,7 +14,9 @@ export class AppController {
         @Inject(SaveAgendaService)
         private saveAgendaService: SaveAgendaService,
         @Inject(SaveAgendaItemsService)
-        private saveAgendaItemsService: SaveAgendaItemsService
+        private saveAgendaItemsService: SaveAgendaItemsService,
+        @Inject(ListAgendaItemsService)
+        private listAgendaItemsService: ListAgendaItemsService
     ) {}
 
     @Get()
@@ -54,6 +57,19 @@ export class AppController {
             const newAgenda = await this.saveAgendaItemsService.execute(params);
 
             return newAgenda;
+        } catch (error) {
+            console.log('error -> ', error);
+            console.error(error);
+        }
+    }
+
+    @Get('/getItems')
+    public async getItems(@Query() params: { momento: string }) {
+        try {
+            console.log('params -> ', params);
+            const data = await this.listAgendaItemsService.execute(params);
+
+            return data;
         } catch (error) {
             console.log('error -> ', error);
             console.error(error);

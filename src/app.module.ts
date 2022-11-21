@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { configService } from './config/config.service';
 import { Agenda } from './model/agenda/entities/Agenda.entity';
+import ListAgendaItemsService from './model/agenda/services/ListAgendaItemsService';
 import ListAgendaService from './model/agenda/services/ListAgendaService';
 import SaveAgendaItemsService from './model/agenda/services/SaveAgendaItemsService';
 import SaveAgendaService from './model/agenda/services/SaveAgendaService';
@@ -19,7 +20,8 @@ import { AgendaItems } from './model/agendaItems/entities/AgendaItems.entity';
         AppService,
         ListAgendaService,
         SaveAgendaService,
-        SaveAgendaItemsService
+        SaveAgendaItemsService,
+        ListAgendaItemsService
     ]
 })
 export class AppModule {}
