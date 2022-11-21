@@ -17,6 +17,7 @@ export default class SaveAgendaItemsService {
         agendaId: string;
         name: string;
         id: string;
+        remove?: string;
     }): Promise<any> {
         const newAgenda = await this.buildQuery(params);
 
@@ -27,6 +28,7 @@ export default class SaveAgendaItemsService {
         agendaId: string;
         name: string;
         id: string;
+        remove?: string;
     }) {
         const agenda = await this.agendaRepository.findOne({
             where: { id: params.agendaId }
@@ -36,6 +38,13 @@ export default class SaveAgendaItemsService {
 
         if (params.id) {
             itemAgenda.id = params.id;
+        }
+
+        if (params.remove && params.id) {
+            await this.agendaItemsRepository.remove(itemAgenda);
+            return;
+        } else if (params.remove) {
+            return;
         }
 
         itemAgenda.agenda = agenda;

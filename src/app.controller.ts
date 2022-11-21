@@ -51,7 +51,13 @@ export class AppController {
 
     @Post('/saveAgendaItems')
     public async saveAgendaItems(
-        @Body() params: { agendaId: string; name: string; id: string }
+        @Body()
+        params: {
+            agendaId: string;
+            name: string;
+            id: string;
+            remove?: string;
+        }
     ) {
         try {
             const newAgenda = await this.saveAgendaItemsService.execute(params);
