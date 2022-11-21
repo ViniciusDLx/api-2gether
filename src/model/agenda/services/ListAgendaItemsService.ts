@@ -18,7 +18,7 @@ export default class ListAgendaItemsService {
 
     private async buildQuery(params: { momento: string }) {
         const builder = this.agendaRepository
-            .createQueryBuilder('agendaItems')
+            .createQueryBuilder('agenda')
             .leftJoinAndSelect('agenda.agendaItems', 'agendaItems');
 
         if (params.momento) {
