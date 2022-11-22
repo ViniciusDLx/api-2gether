@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Agenda } from '../entities/Agenda.entity';
+import { Agenda } from '../../agenda/entities/Agenda.entity';
 
 @Injectable()
 export default class ListAgendaItemsService {

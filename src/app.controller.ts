@@ -1,8 +1,8 @@
 import { Controller, Get, Inject, Query, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
-import ListAgendaItemsService from './model/agenda/services/ListAgendaItemsService';
+import ListAgendaItemsService from './model/agendaItems/services/ListAgendaItemsService';
 import ListAgendaService from './model/agenda/services/ListAgendaService';
-import SaveAgendaItemsService from './model/agenda/services/SaveAgendaItemsService';
+import SaveAgendaItemsService from './model/agendaItems/services/SaveAgendaItemsService';
 import SaveAgendaService from './model/agenda/services/SaveAgendaService';
 
 @Controller()
