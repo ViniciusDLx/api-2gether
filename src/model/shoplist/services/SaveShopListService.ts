@@ -33,6 +33,8 @@ export default class SaveShopListService {
             shopList.id = params.id;
         }
 
+        console.log('PARAMS -> ', params.remove, params.id);
+
         if (params.remove && params.id) {
             await this.shopListRepository.remove(shopList);
             return;
