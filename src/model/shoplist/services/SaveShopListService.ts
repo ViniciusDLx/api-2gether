@@ -19,9 +19,13 @@ export default class SaveShopListService {
         remove?: string;
     }): Promise<any> {
         console.log('antes');
-        const newShopList = await this.buildQuery(params);
+        try {
+            const newShopList = await this.buildQuery(params);
 
-        return newShopList;
+            return newShopList;
+        } catch (error) {
+            throw error;
+        }
     }
 
     private async buildQuery(params: {
