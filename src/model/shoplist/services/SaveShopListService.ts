@@ -57,6 +57,10 @@ export default class SaveShopListService {
             shopList.checked = params.checked;
             shopList.ordination = +params.ordination;
 
+            if (params.checked) {
+                shopList.deletedAt = new Date();
+            }
+
             console.log('shopList -> ', shopList);
 
             return await this.shopListRepository.save(shopList);

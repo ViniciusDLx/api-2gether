@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { Shoplist } from '../entities/Shoplist.entity';
 
 @Injectable()
@@ -19,6 +19,7 @@ export default class ListShopListService {
     private async buildQuery() {
         const builder = this.shopListRepository
             .createQueryBuilder('shopList')
+            .where({ deletedAt: IsNull() })
             .orderBy('shopList.ordination', 'ASC');
 
         const [data, total] = (await builder.getManyAndCount()) as any;
