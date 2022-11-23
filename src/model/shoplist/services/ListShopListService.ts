@@ -7,7 +7,7 @@ import { Shoplist } from '../entities/Shoplist.entity';
 export default class ListShopListService {
     public constructor(
         @InjectRepository(Shoplist)
-        private agendaRepository: Repository<Shoplist>
+        private shopListRepository: Repository<Shoplist>
     ) {}
 
     public async execute(): Promise<any> {
@@ -17,7 +17,9 @@ export default class ListShopListService {
     }
 
     private async buildQuery() {
-        const builder = this.agendaRepository.createQueryBuilder('shopList');
+        const builder = this.shopListRepository
+            .createQueryBuilder('shopList')
+            .orderBy('shopList.ordination', 'ASC');
 
         const [data, total] = (await builder.getManyAndCount()) as any;
 
