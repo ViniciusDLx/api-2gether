@@ -59,7 +59,7 @@ export default class SaveShopListService {
 
             console.log('shopList -> ', shopList);
 
-            return await this.shopListRepository.save(shopList);
+            // return await this.shopListRepository.save(shopList);
         } catch (error) {
             throw error;
         }
