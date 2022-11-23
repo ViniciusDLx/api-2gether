@@ -36,28 +36,32 @@ export default class SaveShopListService {
         ordination: string;
         remove?: string;
     }) {
-        const shopList = new Shoplist();
+        try {
+            const shopList = new Shoplist();
 
-        if (params.id) {
-            shopList.id = params.id;
+            if (params.id) {
+                shopList.id = params.id;
+            }
+
+            console.log('PARAMS -> ', params.remove, params.id);
+
+            if (params.remove && params.id) {
+                await this.shopListRepository.remove(shopList);
+                return;
+            } else if (params.remove) {
+                return;
+            }
+
+            shopList.qtd = +params.qtd;
+            shopList.name = params.name;
+            shopList.checked = params.checked;
+            shopList.ordination = +params.ordination;
+
+            console.log('shopList -> ', shopList);
+
+            return await this.shopListRepository.save(shopList);
+        } catch (error) {
+            throw error;
         }
-
-        console.log('PARAMS -> ', params.remove, params.id);
-
-        if (params.remove && params.id) {
-            await this.shopListRepository.remove(shopList);
-            return;
-        } else if (params.remove) {
-            return;
-        }
-
-        shopList.qtd = +params.qtd;
-        shopList.name = params.name;
-        shopList.checked = params.checked;
-        shopList.ordination = +params.ordination;
-
-        console.log('shopList -> ', shopList);
-
-        return await this.shopListRepository.save(shopList);
     }
 }
