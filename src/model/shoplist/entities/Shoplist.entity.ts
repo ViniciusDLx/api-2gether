@@ -17,6 +17,12 @@ export class Shoplist {
     @Column({ name: 'qtd' })
     qtd: number;
 
+    @Column({ name: 'checked' })
+    checked: boolean;
+
+    @Column({ name: 'ordination' })
+    ordination: number;
+
     @Column({ name: 'created_at' })
     createdAt: Date;
 

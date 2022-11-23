@@ -107,6 +107,8 @@ export class AppController {
             name: string;
             id: string;
             qtd: string;
+            checked: boolean;
+            ordination: string;
             remove?: string;
         }
     ) {

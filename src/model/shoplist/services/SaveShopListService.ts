@@ -14,6 +14,8 @@ export default class SaveShopListService {
         name: string;
         id: string;
         qtd: string;
+        checked: boolean;
+        ordination: string;
         remove?: string;
     }): Promise<any> {
         const newShopList = await this.buildQuery(params);
@@ -25,6 +27,8 @@ export default class SaveShopListService {
         name: string;
         id: string;
         qtd: string;
+        checked: boolean;
+        ordination: string;
         remove?: string;
     }) {
         const shopList = new Shoplist();
@@ -44,6 +48,8 @@ export default class SaveShopListService {
 
         shopList.qtd = +params.qtd;
         shopList.name = params.name;
+        shopList.checked = params.checked;
+        shopList.ordination = +params.ordination;
 
         return await this.shopListRepository.save(shopList);
     }
