@@ -1,5 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Inventory } from 'src/model/inventory/entities/Inventory.entity';
+import SaveInventoryService from 'src/model/inventory/services/SaveInventoryService';
 import { Repository } from 'typeorm';
 import { Shoplist } from '../entities/Shoplist.entity';
 
@@ -7,7 +9,9 @@ import { Shoplist } from '../entities/Shoplist.entity';
 export default class SaveShopListService {
     public constructor(
         @InjectRepository(Shoplist)
-        private shopListRepository: Repository<Shoplist>
+        private shopListRepository: Repository<Shoplist>,
+        @Inject(SaveInventoryService)
+        private saveInventoryService: SaveInventoryService
     ) {}
 
     public async execute(params: {
@@ -59,6 +63,14 @@ export default class SaveShopListService {
 
             if (params.checked) {
                 shopList.deletedAt = new Date();
+
+                const inventory = new Inventory();
+
+                inventory.name = params.name;
+                inventory.ordination = +params.ordination;
+                inventory.qtd = +params.qtd;
+
+                await this.saveInventoryService.execute(inventory);
             }
 
             console.log('shopList -> ', shopList);

@@ -12,11 +12,13 @@ import { AgendaItems } from './model/agendaItems/entities/AgendaItems.entity';
 import SaveShopListService from './model/shoplist/services/SaveShopListService';
 import { Shoplist } from './model/shoplist/entities/Shoplist.entity';
 import ListShopListService from './model/shoplist/services/ListShopListService';
+import SaveInventoryService from './model/inventory/services/SaveInventoryService';
+import { Inventory } from './model/inventory/entities/Inventory.entity';
 
 @Module({
     imports: [
         TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
-        TypeOrmModule.forFeature([Agenda, AgendaItems, Shoplist])
+        TypeOrmModule.forFeature([Agenda, AgendaItems, Shoplist, Inventory])
     ],
     controllers: [AppController],
     providers: [
@@ -26,7 +28,8 @@ import ListShopListService from './model/shoplist/services/ListShopListService';
         SaveAgendaItemsService,
         ListAgendaItemsService,
         SaveShopListService,
-        ListShopListService
+        ListShopListService,
+        SaveInventoryService
     ]
 })
 export class AppModule {}
