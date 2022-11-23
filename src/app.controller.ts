@@ -5,6 +5,7 @@ import ListAgendaService from './model/agenda/services/ListAgendaService';
 import SaveAgendaItemsService from './model/agendaItems/services/SaveAgendaItemsService';
 import SaveAgendaService from './model/agenda/services/SaveAgendaService';
 import SaveShopListService from './model/shoplist/services/SaveShopListService';
+import ListShopListService from './model/shoplist/services/ListShopListService';
 
 @Controller()
 export class AppController {
@@ -18,6 +19,8 @@ export class AppController {
         private saveAgendaItemsService: SaveAgendaItemsService,
         @Inject(ListAgendaItemsService)
         private listAgendaItemsService: ListAgendaItemsService,
+        @Inject(ListShopListService)
+        private listShopListService: ListShopListService,
         @Inject(SaveShopListService)
         private saveShopListService: SaveShopListService
     ) {}
@@ -77,6 +80,18 @@ export class AppController {
         try {
             console.log('params -> ', params);
             const data = await this.listAgendaItemsService.execute(params);
+
+            return data;
+        } catch (error) {
+            console.log('error -> ', error);
+            console.error(error);
+        }
+    }
+
+    @Get('/listShopList')
+    public async listShopList() {
+        try {
+            const data = await this.listShopListService.execute();
 
             return data;
         } catch (error) {

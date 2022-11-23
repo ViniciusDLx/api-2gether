@@ -11,6 +11,7 @@ import SaveAgendaService from './model/agenda/services/SaveAgendaService';
 import { AgendaItems } from './model/agendaItems/entities/AgendaItems.entity';
 import SaveShopListService from './model/shoplist/services/SaveShopListService';
 import { Shoplist } from './model/shoplist/entities/Shoplist.entity';
+import ListShopListService from './model/shoplist/services/ListShopListService';
 
 @Module({
     imports: [
@@ -24,7 +25,8 @@ import { Shoplist } from './model/shoplist/entities/Shoplist.entity';
         SaveAgendaService,
         SaveAgendaItemsService,
         ListAgendaItemsService,
-        SaveShopListService
+        SaveShopListService,
+        ListShopListService
     ]
 })
 export class AppModule {}
