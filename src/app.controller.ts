@@ -113,9 +113,9 @@ export class AppController {
         }
     ) {
         try {
-            const newAgenda = await this.saveShopListService.execute(params);
+            const newShopList = await this.saveShopListService.execute(params);
 
-            return newAgenda;
+            return newShopList;
         } catch (error) {
             console.log('error -> ', error);
             console.error(error);

@@ -18,6 +18,7 @@ export default class SaveShopListService {
         ordination: string;
         remove?: string;
     }): Promise<any> {
+        console.log('antes');
         const newShopList = await this.buildQuery(params);
 
         return newShopList;
@@ -50,6 +51,8 @@ export default class SaveShopListService {
         shopList.name = params.name;
         shopList.checked = params.checked;
         shopList.ordination = +params.ordination;
+
+        console.log('shopList -> ', shopList);
 
         return await this.shopListRepository.save(shopList);
     }
