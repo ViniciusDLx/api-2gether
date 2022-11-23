@@ -40,13 +40,19 @@ export default class SaveInventoryService {
             //     return;
             // }
 
+            console.log(
+                'inventory.qtd, +params.qtd -> ',
+                inventory.qtd,
+                +params.qtd
+            );
+
             inventory.qtd = inventory.qtd + +params.qtd;
             inventory.name = params.name;
             inventory.ordination = +params.ordination;
 
             console.log('inventory -> ', inventory);
 
-            return await this.inventoryRepository.save(inventory);
+            // return await this.inventoryRepository.save(inventory);
         } catch (error) {
             throw error;
         }
