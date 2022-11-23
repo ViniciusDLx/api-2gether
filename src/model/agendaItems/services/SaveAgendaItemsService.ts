@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AgendaItems } from 'src/model/agendaItems/entities/AgendaItems.entity';
 import { Repository } from 'typeorm';
-import { Agenda } from '../../Agenda/entities/Agenda.entity';
+import { Agenda } from '../../agenda/entities/Agenda.entity';
 
 @Injectable()
 export default class SaveAgendaItemsService {
