@@ -46,13 +46,13 @@ export default class SaveInventoryService {
                 +params.qtd
             );
 
-            inventory.qtd = inventory.qtd + +params.qtd;
+            inventory.qtd = (inventory.qtd || 0) + +params.qtd;
             inventory.name = params.name;
             inventory.ordination = +params.ordination;
 
             console.log('inventory -> ', inventory);
 
-            // return await this.inventoryRepository.save(inventory);
+            return await this.inventoryRepository.save(inventory);
         } catch (error) {
             throw error;
         }
