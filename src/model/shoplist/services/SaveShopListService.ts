@@ -22,7 +22,6 @@ export default class SaveShopListService {
         ordination: string;
         remove?: string;
     }): Promise<any> {
-        console.log('antes');
         try {
             const newShopList = await this.buildQuery(params);
 
@@ -69,6 +68,8 @@ export default class SaveShopListService {
                 inventory.name = params.name;
                 inventory.ordination = +params.ordination;
                 inventory.qtd = +params.qtd;
+
+                console.log('antes de enviar -> ', inventory);
 
                 await this.saveInventoryService.execute(inventory);
             }
