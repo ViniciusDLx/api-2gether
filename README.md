@@ -33,7 +33,7 @@
   Vinícius de Lima Xavier
   Max Willian Trajano Martins
   Higor Librelato
-  Elói Jr.
+  Elói de Matos da Silveira
 ```
 
 ## Installation
