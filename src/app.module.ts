@@ -14,6 +14,7 @@ import { Shoplist } from './model/shoplist/entities/Shoplist.entity';
 import ListShopListService from './model/shoplist/services/ListShopListService';
 import SaveInventoryService from './model/inventory/services/SaveInventoryService';
 import { Inventory } from './model/inventory/entities/Inventory.entity';
+import ListInventoryService from './model/inventory/services/ListInventoryService';
 
 @Module({
     imports: [
@@ -29,7 +30,8 @@ import { Inventory } from './model/inventory/entities/Inventory.entity';
         ListAgendaItemsService,
         SaveShopListService,
         ListShopListService,
-        SaveInventoryService
+        SaveInventoryService,
+        ListInventoryService
     ]
 })
 export class AppModule {}
