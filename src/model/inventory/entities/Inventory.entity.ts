@@ -29,6 +29,8 @@ export class Inventory {
     @Column({ name: 'deleted_at', nullable: true })
     deletedAt: Date;
 
+    remove: boolean;
+
     @BeforeInsert()
     public setCreated() {
         this.createdAt = new Date();

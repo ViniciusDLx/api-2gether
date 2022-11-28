@@ -33,12 +33,12 @@ export default class SaveInventoryService {
 
             // console.log('PARAMS -> ', params.remove, params.id);
 
-            // if (params.remove && params.id) {
-            //     await this.inventoryRepository.remove(inventory);
-            //     return;
-            // } else if (params.remove) {
-            //     return;
-            // }
+            if (params.remove && params.id) {
+                await this.inventoryRepository.remove(inventory);
+                return;
+            } else if (params.remove) {
+                return;
+            }
 
             inventory.qtd = +params.qtd;
             inventory.name = params.name;
